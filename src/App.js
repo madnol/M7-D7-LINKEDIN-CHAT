@@ -6,7 +6,7 @@ import NavBar from "./components/NavBar";
 import Profile from "./components/main_components/Profile";
 
 import { Route } from "react-router-dom";
-import {BrowserRouter as Router} from "react-router-dom"
+import { BrowserRouter as Router } from "react-router-dom";
 
 import ShowSearchResult from "./components/main_components/ShowSearchResult";
 
@@ -14,7 +14,7 @@ import Home from "./components/main_components/Home";
 
 import NetworkPage from "./components/Network_Components/NetworkPage";
 import JobsPage from "./components/Jobs_Compnents/JobsPage";
-import MsgPage from "./components/Messaging_Component/MsgPage";
+import MsgPageSocket from "./components/Messaging_Component/MsgPageSocket.jsx";
 import ProtectedRoute from "./components/authComponents/ProtectedRoute";
 import NotRegistered from "./components/authComponents/NotRegistered";
 import LinkedinNav from "./components/main_components/LinkedinNav/LinkedinNav";
@@ -27,31 +27,31 @@ class App extends React.Component {
     searchString: "",
     currentId: null,
     notifications: 0,
-    counter:0
+    counter: 0,
   };
 
-  setCurrentId=(id)=> {
-    this.setState({currentId: id})
-  }  
+  setCurrentId = id => {
+    this.setState({ currentId: id });
+  };
 
-  setUserList = (user) => {
-    this.setState({userList: [...this.state.userList, user]})
-  }
+  setUserList = user => {
+    this.setState({ userList: [...this.state.userList, user] });
+  };
 
-  totalNot = (notifications) => {
-    let total = notifications
+  totalNot = notifications => {
+    let total = notifications;
     // console.log(total)
-    this.setState({ notifications: total })
-    let counter = this.state.counter + 1
-    this.setState({counter: counter})
-  }
+    this.setState({ notifications: total });
+    let counter = this.state.counter + 1;
+    this.setState({ counter: counter });
+  };
 
-  handleSearch = (e) => {
+  handleSearch = e => {
     if (e.keyCode === 13 || e.key === "Enter") {
       e.preventDefault();
 
       let filteredUserList = this.state.userList.filter(
-        (user) =>
+        user =>
           (user.name &&
             user.name.toLowerCase().includes(this.state.searchString)) ||
           (user.surname &&
@@ -67,8 +67,6 @@ class App extends React.Component {
       });
     }
   };
-
-
 
   componentDidMount() {
     // this.getUserList();
@@ -94,10 +92,25 @@ class App extends React.Component {
           <Route path="/profile/:id" component={Profile} />
           <Route
             path="/mynetwork"
-            render={(props) => <NetworkPage userList={this.state.userList} setCurrentId={this.setCurrentId} setUsers={ this.setUserList}/>}
+            render={props => (
+              <NetworkPage
+                userList={this.state.userList}
+                setCurrentId={this.setCurrentId}
+                setUsers={this.setUserList}
+              />
+            )}
           />
           <Route path="/jobs" component={JobsPage} />
-          <Route path="/message/:id" render={(props) => <MsgPage {...props} selectedUsers={this.state.userList} totalNot={ this.totalNot}/>} />
+          <Route
+            path="/message/:id"
+            render={props => (
+              <MsgPageSocket
+                {...props}
+                selectedUsers={this.state.userList}
+                totalNot={this.totalNot}
+              />
+            )}
+          />
         </Router>
       </div>
     );

@@ -13,7 +13,7 @@ export async function getReactionsByPostId(postId) {
       return null;
     }
   } catch (error) {
-    console.log(error);
+    // console.log(error);
   }
 }
 
