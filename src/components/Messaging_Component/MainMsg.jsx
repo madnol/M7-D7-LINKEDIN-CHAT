@@ -43,10 +43,11 @@ export default class MainMsg extends PureComponent {
         }}
       >
         {this.state.chat.chat.lenght > 0 ? (
-          this.state.chat.chat.map((msg) => {
+          this.state.chat.chat.map((msg, i) => {
             console.log(msg);
             return (
               <div
+                key={i}
                 className="text"
                 style={{
                   alignItems:

@@ -95,7 +95,7 @@ class LeftSide extends React.Component {
                     <div>
                       <a style={{ fontSize: "13px" }}>
                         <i
-                          class="fas fa-square"
+                          className="fas fa-square"
                           style={{ color: "rgb(186, 189, 11)" }}
                         ></i>
                         Reactivate Premium
@@ -104,7 +104,7 @@ class LeftSide extends React.Component {
                   </div>
                   <div className="mt-2">
                     <p style={{ fontSize: "13px" }}>
-                      <i class="fas fa-bookmark"></i>My items
+                      <i className="fas fa-bookmark"></i>My items
                     </p>
                   </div>
                 </Col>

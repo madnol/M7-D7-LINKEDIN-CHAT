@@ -19,7 +19,7 @@ export default class EditAdd extends Component {
                 <br />
                 language
               </p>
-              <i class="fas fa-question-circle ml-5 links "></i>
+              <i className="fas fa-question-circle ml-5 links "></i>
             </Card.Text>
           </Card.Body>
         </Card>

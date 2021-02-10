@@ -8,34 +8,33 @@ import bootstrap, {
   Dropdown,
 } from "react-bootstrap";
 import footericon from "./images/footericon.png";
-import {useLocation} from 'react-router-dom'
+import { useLocation } from "react-router-dom";
 
 class Footer extends Component {
-  state={
-    show:true,
-    path:''
+  state = {
+    show: true,
+    path: "",
+  };
+
+  checkPath() {
+    this.setState({ path: window.location.href });
+    console.log(this.state.path);
   }
 
-  checkPath(){
-    this.setState({path: window.location.href})
-    console.log(this.state.path)
+  componentDidMount() {
+    this.checkPath();
   }
 
-
-  componentDidMount(){
-    this.checkPath()
-  }
-
-  componentDidUpdate(prevProps, prevState){
-    if(prevState.path !== this.state.path){
-      this.checkPath()
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.path !== this.state.path) {
+      this.checkPath();
     }
   }
 
   render() {
-    let show = this.state.show? 'block' : 'none'
+    let show = this.state.show ? "block" : "none";
     return (
-      <div className='linkedin-footer' style={{display: `${show}`}}>
+      <div className="linkedin-footer" style={{ display: `${show}` }}>
         <Container>
           <Image
             src={footericon}
@@ -77,13 +76,13 @@ class Footer extends Component {
             <Col>
               <ul style={{ listStyle: "none", textAlign: "left" }}>
                 <li>
-                  <i class="fas fa-question-circle"></i>Questions? <br />
+                  <i className="fas fa-question-circle"></i>Questions? <br />
                   <p style={{ color: "Grey", fontSize: "12px" }}>
                     Visit our Help Center.
                   </p>
                 </li>
                 <li>
-                  <i class="fas fa-cog"></i>Manage your account and privacy{" "}
+                  <i className="fas fa-cog"></i>Manage your account and privacy{" "}
                   <br />
                   <p style={{ color: "Grey", fontSize: "12px" }}>
                     Go to your Settings.
@@ -93,7 +92,7 @@ class Footer extends Component {
             </Col>
             <Col>
               Select Language
-              <div class="dropdown">
+              <div className="dropdown">
                 <button
                   style={{
                     borderRadius: "0",
@@ -101,7 +100,7 @@ class Footer extends Component {
                     color: "black",
                     width: "200px",
                   }}
-                  class="btn  dropdown-toggle"
+                  className="btn  dropdown-toggle"
                   type="button"
                   id="dropdownMenuButton"
                   data-toggle="dropdown"
@@ -110,14 +109,17 @@ class Footer extends Component {
                 >
                   English
                 </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" href="#">
+                <div
+                  className="dropdown-menu"
+                  aria-labelledby="dropdownMenuButton"
+                >
+                  <a className="dropdown-item" href="#">
                     Action
                   </a>
-                  <a class="dropdown-item" href="#">
+                  <a className="dropdown-item" href="#">
                     Another action
                   </a>
-                  <a class="dropdown-item" href="#">
+                  <a className="dropdown-item" href="#">
                     Something else here
                   </a>
                 </div>

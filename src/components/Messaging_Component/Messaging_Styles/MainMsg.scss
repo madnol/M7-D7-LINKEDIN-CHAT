@@ -1,4 +1,4 @@
-@import '../../css/SASS/Compatibilites';
+@import "../../css/SASS/Compatibilites";
 #main-msg {
   width: 60%;
   header {
@@ -15,13 +15,13 @@
     padding: 0.5rem 1rem;
     display: flex;
     align-items: center;
-    img{
+    img {
       width: 30px;
       height: 30px;
       @include borderRadius(50%);
-      margin-right: .5rem;
+      margin-right: 0.5rem;
     }
-    p{
+    p {
       margin: 0;
     }
   }
@@ -30,29 +30,41 @@
     border-bottom: 1px solid rgba($color: #000000, $alpha: 0.1);
     padding: 20px;
     overflow-y: auto;
-    .text{
+
+    #messages {
+      list-style: none;
+      padding: 2rem;
       display: flex;
       flex-direction: column;
-      p{
-          font-size: .75rem;
-          font-weight: 800;
-          margin-bottom: .5rem;
-          img{
-            width: 25px;
-            height: 25px;
-            @include borderRadius(50%);
-            margin-right: 5px;
-          }
-      }
-      span{
-        max-width: 200px;
-        padding: .5rem 1rem;
-        font-size: 1rem;
-        font-weight: 700;
-        border: 1px solid rgba($color: #000000, $alpha: 0.1);
-        @include borderRadius(10px);
-        color: white;
-      }
+    }
+
+    #messages li {
+      max-width: 49%;
+      padding: 0.5rem 1rem;
+      margin-bottom: 0.25rem;
+      border-radius: 20px;
+      box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.15);
+    }
+
+    .ownMessage {
+      display: flex;
+      list-style-type: none;
+      text-decoration: none;
+      align-self: flex-end;
+      background-color: #00ff84;
+      color: #0d0e0e;
+      border-radius: 50px;
+
+      border-top-right-radius: 0 !important;
+    }
+
+    .message {
+      list-style-type: none;
+      text-decoration: none;
+      align-self: flex-start;
+      background-color: #0d0e0e;
+      color: white;
+      border-top-left-radius: 0 !important;
     }
   }
   .msg-sender {

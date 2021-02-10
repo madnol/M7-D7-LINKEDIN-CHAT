@@ -100,7 +100,7 @@ class ActionButtons extends React.Component {
     }
   };
 
-  getReactions = async (postId) => {
+  getReactions = async postId => {
     const result = await getReactionsByPostId(postId);
     return result;
   };
@@ -109,7 +109,7 @@ class ActionButtons extends React.Component {
     let reacts = this.state.reacts;
 
     if (reacts.length > 0) {
-      reacts.forEach((react) => {
+      reacts.forEach(react => {
         if (react.user._id.localeCompare(this.state.userId) === 0) {
           this.setState({ userReaction: react.react });
         }
@@ -117,7 +117,7 @@ class ActionButtons extends React.Component {
     }
   };
 
-  changeState = async (userReaction) => {
+  changeState = async userReaction => {
     this.setState({ userReaction });
     const reactions = await this.getReactions(this.props.postId);
 
@@ -153,10 +153,9 @@ class ActionButtons extends React.Component {
                 <div className="reaction-list">
                   {this.state.newReacts && (
                     <>
-                      {this.state.newReacts.reactCounts.map((react) => (
+                      {this.state.newReacts.reactCounts.map((react, i) => (
                         <>
-                          <div className="new-reactions">
-                            {" "}
+                          <div className="new-reactions" key={i}>
                             {react._id === 1 ? (
                               <img src={one} alt="" id="1" />
                             ) : react._id === 2 ? (
@@ -189,7 +188,7 @@ class ActionButtons extends React.Component {
                 viewBox="0 0 24 24"
                 data-supported-dps="24x24"
                 fill={this.state.userReaction > 0 && "blue"}
-                class="mercado-match"
+                className="mercado-match"
                 width="24"
                 height="24"
                 focusable="false"
@@ -218,7 +217,7 @@ class ActionButtons extends React.Component {
             <span className=" ml-1">Like</span>
           </div>
           <LikeActions
-            changeState={(react) => this.changeState(react)}
+            changeState={react => this.changeState(react)}
             show={this.state.showLike}
             userReaction={this.state.userReaction}
             userId={this.state.userId}
@@ -230,7 +229,7 @@ class ActionButtons extends React.Component {
               viewBox="0 0 24 24"
               data-supported-dps="24x24"
               fill="currentColor"
-              class="mercado-match"
+              className="mercado-match"
               width="24"
               height="24"
               focusable="false"
@@ -245,7 +244,7 @@ class ActionButtons extends React.Component {
               viewBox="0 0 24 24"
               data-supported-dps="24x24"
               fill="currentColor"
-              class="mercado-match"
+              className="mercado-match"
               width="24"
               height="24"
               focusable="false"
@@ -261,7 +260,7 @@ class ActionButtons extends React.Component {
               viewBox="0 0 24 24"
               data-supported-dps="24x24"
               fill="currentColor"
-              class="mercado-match"
+              className="mercado-match"
               width="24"
               height="24"
               focusable="false"

@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import bootstrap, { Row, Col } from "react-bootstrap";
-import '../css/RightSide.scss'
-import footericon from "../images/footericon.png"
+import "../css/RightSide.scss";
+import footericon from "../images/footericon.png";
 class RightSide extends Component {
   render() {
     return (
       <div>
-        <div class="card" style={{ borderRadius: "10px" }}>
-          <div class="card-body">
-            <h5 class="card-title">Add to your feed</h5>
+        <div className="card" style={{ borderRadius: "10px" }}>
+          <div className="card-body">
+            <h5 className="card-title">Add to your feed</h5>
             <Row>
               <Col xs={2}>
                 <img
@@ -60,7 +60,7 @@ class RightSide extends Component {
           </div>
         </div>
 
-        <div id='ads-course'>
+        <div id="ads-course">
           <header>
             <p>Today's most viewed courses</p>
             <i className="fas fa-info"></i>
@@ -79,10 +79,10 @@ class RightSide extends Component {
               <p>Madecraft and Samantha Bennett</p>
             </li>
           </ul>
-          <p className='linkedin-learning'>Show more on LinkedIn Learning</p>
+          <p className="linkedin-learning">Show more on LinkedIn Learning</p>
         </div>
-        
-        <div id='footer-right' style={{position:'sticky', top:'60px'}}>
+
+        <div id="footer-right" style={{ position: "sticky", top: "60px" }}>
           <div className="links-footer-right">
             <span>About</span>
             <span>Accessibility</span>
@@ -92,15 +92,15 @@ class RightSide extends Component {
             <span>Advertising</span>
             <span>Business Services</span>
             <span>Get the LinkedIn app</span>
-
           </div>
           <p>More</p>
           <div className="linkedin-rights">
-            <span><img src={footericon} alt=""/></span>
+            <span>
+              <img src={footericon} alt="" />
+            </span>
             <span>Linkedin Corporation © 2020</span>
           </div>
         </div>
-
       </div>
     );
   }

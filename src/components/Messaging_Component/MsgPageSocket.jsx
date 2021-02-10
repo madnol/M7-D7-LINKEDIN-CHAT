@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import "../Messaging_Component/Messaging_Styles/MsgPage.scss";
 import "../Messaging_Component/Messaging_Styles/MainMsg.scss";
 import "../css/RightSide.scss";
@@ -14,38 +14,69 @@ const connOpt = {
 
 let socket = io("https://striveschool-api.herokuapp.com", connOpt);
 
-class MsgPageSocket extends Component {
+class MsgPageSocket extends PureComponent {
   state = {
     username: null,
     message: "",
     messages: [],
+    users: [],
+    selectedUser: null,
   };
 
-  componentDidMount() {
-    socket.on("bmsg", msg =>
-      this.setState({ messages: this.state.messages.concat(msg) })
-    );
-    socket.on("connect", () => console.log("connected to socket"));
-  }
+  handleMessage = e => {
+    this.setState({ message: e.target.value });
+  };
 
   sendMessage = e => {
     e.preventDefault();
-    console.log("send");
-    console.log(this.state.message);
+
     if (this.state.message !== "") {
+      console.log(this.state.selectedUser);
+
       socket.emit("bmsg", {
-        from: this.state.username,
+        to: this.state.selectedUser,
         text: this.state.message,
-        to: this.state.messages.user,
       });
 
       this.setState({ message: "" });
     }
   };
 
-  handleMessage = e => {
-    this.setState({ message: e.target.value });
-  };
+  componentDidMount() {
+    const { user } = this.props.auth0;
+    console.log(user);
+    if (user !== undefined) {
+      this.setState({ username: user.nickname });
+    }
+
+    socket.on("bmsg", msg =>
+      this.setState({ messages: this.state.messages.concat(msg) })
+    );
+
+    socket.on("connect", () => console.log("connected", this.socket.id));
+    socket.on("list", users => {
+      this.setState({ users: [] });
+
+      //*SET
+      //Set objects are collections of values.
+      //You can iterate through the elements of a set
+      // in insertion order. A value in the Set may only occur once;
+      //it is unique in the Set's collection.
+      let userNoDuplicate = [...new Set(users)];
+      this.setState({
+        users: this.state.users
+          .concat(userNoDuplicate)
+          .filter(x => x !== user.nickname),
+      });
+    });
+    socket.emit("setUsername", {
+      username: user.nickname,
+    });
+  }
+
+  componentWillUnmount() {
+    socket.disconnect();
+  }
 
   render() {
     return (
@@ -58,6 +89,7 @@ class MsgPageSocket extends Component {
             handleMessage={e => this.handleMessage(e)}
             sendMessage={e => this.sendMessage(e)}
             messages={this.state.messages}
+            selectedUser={this.state.selectedUser}
           />
         </div>
         <div id="footer-right" style={{ position: "sticky", top: "60px" }}>
